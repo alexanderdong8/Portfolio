@@ -325,12 +325,12 @@ body:not(.ready) .fadein{transition:none}
 .skills li:hover .lvl{color:var(--black)}
 @media (max-width:768px){.sidebar{margin-top:calc(var(--line) * 2)}}
 
-/* contact: headline top-left, links bottom-left (level with the Send row), the form on the right */
+/* contact: the form on the left; headline top-right, links bottom-right (level with the Send row) */
 #contact .section{row-gap:0;align-items:stretch}
-.contact-lede{grid-column:1 / 3;grid-row:2;padding:calc(var(--line) * 2) calc(var(--ch) * 4) calc(var(--line) * 3) 0}
+.contact-lede{grid-column:3 / 5;grid-row:2;padding:calc(var(--line) * 2) 0 calc(var(--line) * 3) calc(var(--ch) * 4)}
 .contact-lede .mega{max-width:calc(var(--ch) * 48)}
-.contact-form{grid-column:3 / 5;grid-row:2 / 4;padding:calc(var(--line) * 2) 0 0 calc(var(--ch) * 4)}
-.contact-links{grid-column:1 / 3;grid-row:3;align-self:end;display:flex;flex-direction:column;padding-right:calc(var(--ch) * 4)}
+.contact-form{grid-column:1 / 3;grid-row:2 / 4;padding:calc(var(--line) * 2) calc(var(--ch) * 4) 0 0}
+.contact-links{grid-column:3 / 5;grid-row:3;align-self:end;display:flex;flex-direction:column;padding-left:calc(var(--ch) * 4)}
 @media (max-width:768px){
   .contact-lede,.contact-form,.contact-links{grid-column:1 / -1;grid-row:auto;padding-left:0;padding-right:0}
   .contact-lede{padding:var(--line) 0 calc(var(--line) * 2)}
@@ -936,7 +936,7 @@ function hcSlots(el) {                                     // wrap each non-spac
     for (const c of [...n.childNodes]) {
       if (c.nodeType === 1) { if (!c.classList.contains('arr') && !c.classList.contains('logo-ascii')) walk(c); continue; }
       if (c.nodeType !== 3 || !c.textContent.trim()) { if (c.nodeType === 3) slots.push(...[...c.textContent].map(() => null)); continue; }
-      const frag = document.createDocumentFragment();
+      const frag = document.createElement('span');         // one wrapper per text run, so a flex parent (.button) still sees a single item
       for (const ch of c.textContent) {
         if (!ch.trim()) { frag.append(ch); slots.push(null); continue; }
         const s = document.createElement('span'); s.className = 'hc'; s.textContent = ch; s._hcI = slots.length;
