@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Alex Dong — Computer Science Student</title>
 <meta name="description" content="Alex Dong is a computer science student at Columbia University who designs and builds software. Work, about, and contact.">
-<meta name="color-scheme" content="light">
+<meta name="color-scheme" content="dark">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500;600&family=Familjen+Grotesk:wght@700&display=swap" rel="stylesheet">
@@ -22,18 +22,20 @@
   --line: 16px;
   --fs: 12px;
   --ls: .045em;
-  --black-rgb: 22,22,22;
-  --white-rgb: 242,240,234;   /* warm paper */
+  /* aino's palette: near-black ground, off-white ink. "black"/"white" keep their names as
+     ink/paper roles; --black is the text colour, --white the background. */
+  --black-rgb: 245,245,240;   /* ink: off-white */
+  --white-rgb: 24,24,24;      /* paper: near-black */
   --black: rgb(var(--black-rgb));
   --white: rgb(var(--white-rgb));
-  --accent: #d4501e;
-  --accent-rgb: 212,80,30;
+  --accent: #6fa8ff;          /* sky: one word per page, the active nav item, awards, hovers */
+  --accent-rgb: 111,168,255;
   --char2: calc(var(--ch) * 2);
   --radius: calc(var(--ch) * .45);
   --mono: "Geist Mono","IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
   --sans: "Familjen Grotesk","Helvetica Neue",Helvetica,Arial,sans-serif;
   --ease: cubic-bezier(.19,1,.22,1);
-  color-scheme: light;
+  color-scheme: dark;
 }
 *{box-sizing:border-box}
 html{
@@ -63,7 +65,7 @@ p{text-transform:none}
 
 /* film grain, very quiet */
 body::before{
-  content:"";position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.05;mix-blend-mode:multiply;
+  content:"";position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.07;mix-blend-mode:screen;
   background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .6 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
 }
 
@@ -159,7 +161,7 @@ body:not(.ready) .view{animation:none}
 .logo-inline{
   display:inline-block;vertical-align:baseline;overflow:hidden;white-space:pre;
   text-transform:none;user-select:none;-webkit-user-select:none;color:var(--black);
-  font-family:var(--mono);letter-spacing:var(--ls);font-weight:700;-webkit-text-stroke:.2px currentColor;
+  font-family:var(--mono);letter-spacing:.06em;font-weight:600;       /* no stroke, a little tracking: the characters must stay distinct */
   margin:0 .04em 0 .02em;
 }
 .home .buttons{margin-top:calc(var(--line) * 2)}
@@ -168,7 +170,8 @@ body:not(.ready) .view{animation:none}
 .hero-figure{position:relative;align-self:stretch;height:auto;min-height:380px;max-height:1100px;overflow:hidden}   /* fills the row between the nav and the footer, so nothing scrolls */
 .hero-figure .ascii{
   position:absolute;inset:0;display:block;white-space:pre;text-transform:none;user-select:none;pointer-events:none;
-  color:var(--black);font-family:var(--mono);font-size:8px;line-height:10px;letter-spacing:.02em;font-weight:500;
+  color:var(--black);font-family:var(--mono);font-size:8px;line-height:10px;letter-spacing:.02em;font-weight:600;
+  -webkit-text-stroke:.25px currentColor;      /* tiny glyphs anti-alias to grey on the dark ground; a hairline stroke keeps them white */
   padding:0;overflow:hidden;
 }
 .hero-figure .cap{position:absolute;left:0;right:0;bottom:0;display:flex;justify-content:space-between;color:rgba(var(--black-rgb),.5)}
@@ -195,7 +198,7 @@ body:not(.ready) .view{animation:none}
 .text,.text p{text-transform:none;letter-spacing:var(--ls)}
 .text p + p{margin-top:var(--line)}
 /* about-page body copy: quiet sans, generous measure */
-.prose{text-transform:none;letter-spacing:.02em;font-size:calc(var(--fs) * 1.3);line-height:calc(var(--line) * 1.5);color:rgba(var(--black-rgb),.8);max-width:calc(var(--ch) * 104)}
+.prose{text-transform:none;letter-spacing:.02em;font-size:calc(var(--fs) * 1.3);line-height:calc(var(--line) * 1.5);color:var(--black);max-width:calc(var(--ch) * 104)}
 .prose p + p,.prose ul + p,.prose p + ul{margin-top:calc(var(--line) * 1.25)}
 .prose ul{padding-left:calc(var(--ch) * 3)}
 .prose li{list-style:disc;padding-left:calc(var(--ch) * .5)}
@@ -217,7 +220,7 @@ body:not(.ready) .view{animation:none}
   background:rgba(var(--black-rgb),.05);border:1px solid rgba(var(--black-rgb),.08);
 }
 .photogrid figcaption{
-  text-transform:uppercase;letter-spacing:var(--ls);color:rgba(var(--black-rgb),.8);
+  text-transform:uppercase;letter-spacing:var(--ls);color:var(--black);
   margin-top:calc(var(--line) * .75);text-wrap:pretty;
 }
 @media (max-width:1024px){.photogrid{columns:2}}
@@ -254,7 +257,8 @@ body:not(.ready) .view{animation:none}
 .tile{position:relative;overflow:hidden;border-radius:var(--radius);background:rgba(var(--black-rgb),.05);border:1px solid rgba(var(--black-rgb),.08)}
 .tile .ascii{
   position:absolute;inset:0;display:block;white-space:pre;text-transform:none;user-select:none;pointer-events:none;
-  padding:var(--line) var(--char2) calc(var(--line) * 2);color:var(--black);opacity:.85;
+  padding:var(--line) var(--char2) calc(var(--line) * 2);color:var(--black);opacity:1;font-weight:600;
+  -webkit-text-stroke:.2px currentColor;       /* same reason as the figure: full white, not anti-aliased grey */
 }
 .tile .cap{position:absolute;left:var(--char2);right:var(--char2);bottom:var(--line);display:flex;justify-content:space-between;color:rgba(var(--black-rgb),.5)}
 .tile.thumb{aspect-ratio:5/3}
@@ -270,6 +274,7 @@ body:not(.ready) .fadein{transition:none}
   grid-column:1 / -1;display:grid;grid-template-columns:1fr 1.3fr;column-gap:calc(var(--ch) * 5);
   padding:calc(var(--line) * 2) 0 calc(var(--line) * 4);border-top:1px solid rgba(var(--black-rgb),.14);
 }
+.head + .project{border-top:0}   /* no hairline between the page head and the first row; the rows still separate each other */
 .project .info{display:flex;flex-direction:column;min-width:0}
 .project .body{flex:1;padding-bottom:calc(var(--line) * 2)}
 .project h3{
@@ -287,7 +292,7 @@ body:not(.ready) .fadein{transition:none}
   transform:translate(-50%,-50%) scaleX(var(--k,1));-webkit-text-fill-color:currentColor;
 }
 .project .text{
-  text-transform:none;letter-spacing:.02em;font-size:calc(var(--fs) * 1.1);line-height:calc(var(--line) * 1.25);color:rgba(var(--black-rgb),.8);max-width:none;
+  text-transform:none;letter-spacing:.02em;font-size:calc(var(--fs) * 1.1);line-height:calc(var(--line) * 1.25);color:var(--black);max-width:none;
 }
 .project .award{color:var(--accent);margin-top:var(--line);text-transform:uppercase}
 /* secondary: one quiet line, pinned to the tile's bottom edge */
@@ -301,8 +306,7 @@ body:not(.ready) .fadein{transition:none}
 .project .links{display:flex;gap:calc(var(--ch) * 3);white-space:nowrap}
 .project .links a{transition:color .2s}
 .project .links a:hover{color:var(--accent)}
-.project .tile .ascii{opacity:.8;transition:opacity .4s}
-.project:hover .tile .ascii{opacity:1}
+.project .tile .ascii{opacity:1}
 .tile.art{aspect-ratio:4/3}
 /* art tiles use half-size cells so the drawings keep their detail */
 .tile.art .ascii{font-size:6px;line-height:7.5px;letter-spacing:.045em;font-weight:500}
@@ -329,7 +333,7 @@ body:not(.ready) .fadein{transition:none}
    links (right) share one grid row, so they are the same height with a symmetric gutter */
 #contact .section{row-gap:0}
 .contact-lede{grid-column:1 / -1;padding:calc(var(--line) * 2) 0 calc(var(--line) * 2.5)}
-.contact-lede .mega{max-width:calc(var(--ch) * 48)}
+.contact-lede .mega{font-size:calc(var(--fs) * 4);line-height:calc(var(--line) * 3);max-width:calc(var(--ch) * 64)}   /* a step up from the page-wide .mega size */
 .contact-body{grid-column:1 / -1}
 .mailform{display:grid;grid-template-columns:1fr 1fr;column-gap:calc(var(--ch) * 6);align-items:stretch}
 .mailform .fields{grid-column:1;grid-row:1;display:flex;flex-direction:column}
@@ -339,6 +343,7 @@ body:not(.ready) .fadein{transition:none}
 .contact-links .arrlink:first-child{border-top:0}                       /* both columns start with text, not a line */
 @media (max-width:768px){
   .contact-lede{padding:var(--line) 0 calc(var(--line) * 2)}
+  .contact-lede .mega{font-size:calc(var(--fs) * 2.8);line-height:calc(var(--line) * 2.25)}
   .mailform{grid-template-columns:1fr}
   .contact-links{grid-column:1;grid-row:3;margin-top:calc(var(--line) * 3)}
   .contact-links .arrlink{flex:none;padding:calc(var(--line) * .75) 0}
@@ -1074,7 +1079,10 @@ function mountTile(fig) {
       inline with the sentence: as tall as the headline's capitals,
       sitting on its baseline. Cell size is derived from the cap height.
    ═══════════════════════════════════════════════════════════════ */
-function mountHeroLogo(pre, str, { rows: targetRows = 27, scale: stampScale = 4.6, gain = 1.7 } = {}) {
+function mountHeroLogo(pre, str, { rows: targetRows = 20, scale: stampScale = 4.6, gain = 1.2, fs: fsRatio = 1.0 } = {}) {
+  /* rows: character rows in the stamp; fs: glyph size as a fraction of the row height (≤1 keeps rows from
+     overlapping, so the stamp reads as many small characters rather than a solid mass); gain: how quickly
+     coverage maps to the dense end of the ramp (lower = lighter, more varied interiors) */
   const canvas = document.createElement('canvas');
   const state = { pre, cells: [], cols: 0, rows: 0, metrics: { chw: CH(), lh: LH() } };
   let raf = 0, visible = true; const t0 = performance.now();
@@ -1086,7 +1094,7 @@ function mountHeroLogo(pre, str, { rows: targetRows = 27, scale: stampScale = 4.
     const avail = h1 ? h1.clientWidth - cap * lead : Infinity;         // room left on the line for the stamp
     const H = Math.min(cap * stampScale, avail / 3.5);                 // the stamp stands well above the capitals, on the same baseline; ALEX is ~3.5× as wide as tall
     const rows = Math.max(12, Math.round(targetRows * H / (cap * stampScale)));
-    const lh = Math.max(1.5, H / rows), fs = lh * 1.45;
+    const lh = Math.max(1.5, H / rows), fs = lh * fsRatio;
     pre.style.fontSize = fs.toFixed(3) + 'px'; pre.style.lineHeight = lh.toFixed(3) + 'px';
     const chw = measureAdvance(pre), ky = chw / lh;
     const cols = Math.ceil(rows * 4.5 / ky) + 8;
@@ -1581,6 +1589,9 @@ function show(route) {
   if (body.classList.contains('ready')) reveal(currentView());
 }
 addEventListener('hashchange', () => { const r = parseRoute(); if (r !== current) show(r); else scrollTo(0, 0); });
+/* "#nointro" skips the intro; "#nointro/work" also opens that page (handy for previews) */
+const NOINTRO = location.hash.startsWith('#nointro');
+if (NOINTRO) history.replaceState(null, '', '#' + (location.hash.slice(8) || '/'));
 show(parseRoute());
 
 /* ══════════════════════════════════════════════════════════════
@@ -1755,7 +1766,7 @@ async function runIntro({ fast = false } = {}) {
 /* the ◆ mark replays the intro */
 $('#mark').addEventListener('click', e => { e.preventDefault(); location.hash = '#/'; show('/'); runIntro({ fast: true }); });
 
-if (REDUCED || location.hash === '#nointro') { if (location.hash === '#nointro') history.replaceState(null, '', '#/'); skipIntro(); }
+if (REDUCED || NOINTRO) skipIntro();
 else runIntro();
 })();
 </script>

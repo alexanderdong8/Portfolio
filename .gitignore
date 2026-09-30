@@ -1,3 +1,9 @@
 .vercel
 .env*
 node_modules/
+
+# raw footage and generated preview pages (not part of the site)
+IMG_4547.mov
+mockups.html
+accents.html
+__pycache__/

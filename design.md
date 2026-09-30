@@ -28,14 +28,24 @@ A personal site for Alex Dong, CS student at Columbia. One HTML file, no framewo
 
 ## Colour
 
-| role   | value           | use                                                                |
-| ------ | --------------- | ------------------------------------------------------------------ |
-| paper  | `#F2F0EA`       | background, warm off-white                                         |
-| ink    | `#161616`       | text and figure                                                    |
-| accent | `#D4501E`       | one word per page ("Columbia"), the active nav item, awards, hover |
-| muted  | ink at 45–80 %  | labels, captions, body copy                                        |
+Aino's palette, adopted as-is: a near-black ground and off-white ink, for the text and the ASCII alike.
 
-A faint film-grain overlay (5 %) sits over everything. Light mode only, by decision.
+| role   | value              | use                                                                |
+| ------ | ------------------ | ------------------------------------------------------------------ |
+| ground | `rgb(24,24,24)`    | background, dark grey rather than pure black                       |
+| ink    | `rgb(245,245,240)` | text, the ASCII figure, the art tiles, the intro                   |
+| accent | `#6FA8FF`          | sky blue: one word per page ("Columbia"), the active nav item, awards, hover |
+| muted  | ink at 45–60 %     | small labels only: "HI, I'M", captions under tiles, technology pills, field labels |
+
+Running text is full ink, not grey: the About prose, the photo captions and the project descriptions all read at
+100 %. Only small labels step down. The ASCII figure and the art tiles are drawn at full white with a hairline
+text stroke, because 6–9 px glyphs otherwise anti-alias to grey on a dark ground.
+
+The accent was burnt orange (`#D4501E`, lifted to `#F26B3A` for the dark ground) until seven candidates were
+compared on the real pages; sky blue won over lime, yellow, Columbia blue, mint and a monochrome white. A faint
+film-grain overlay (7 %, screen blend) sits over everything. One scheme only: there is no light/dark toggle.
+(The site began on a warm off-white paper, `#F2F0EA` with `#161616` ink, and was switched to aino's dark scheme
+at Alex's request.)
 
 ## Type
 
@@ -48,7 +58,7 @@ Two families, standardised late in the process after trying a serif:
 
 Sizes that were argued over and settled:
 
-- Body copy: mono 15.6 px on 24 px lines, 80 % ink (12 px was "tiny").
+- Body copy: mono 15.6 px on 24 px lines, full ink (12 px was "tiny"; 80 % ink read as grey on the dark ground).
 - Project descriptions: 13.2 px on 20 px lines (asked for smaller twice).
 - Landing "HI, I'M": 13.2 px uppercase, 60 % ink. Tagline "A CS STUDENT AT COLUMBIA": 16.8 px uppercase,
   0.08 em tracking.
@@ -80,7 +90,10 @@ A CS STUDENT AT COLUMBIA     mono, Columbia in the accent
 - The whole block is nudged in from the margin by two characters so it does not hang on the same edge as the
   nav's "ALEX DONG".
 - The ALEX stamp is live: the same glyph ramp as the intro, with a wave running through it. It is sized from
-  the headline's cap height and capped to the column width so it shrinks on phones.
+  the headline's cap height and capped to the column width so it shrinks on phones. It is 20 rows of 6 px
+  characters, each no taller than its row, at weight 600 with no stroke: dense enough to read as ALEX from
+  across the room, open enough that you can see it is made of `0`, `N`, `A`, `/` and `<` up close. (Finer,
+  bolder, stroked settings were tried and read as a solid block with hatching.)
 
 Right column, the figure:
 
@@ -142,7 +155,9 @@ Right column, the figure:
 
 - Started as a long single-scroll page with hero, projects, skills, about and contact. Split into separate
   hash-routed pages for a minimal landing.
-- Dark mode and the theme toggle: removed. Light only.
+- The theme toggle was removed early and the site stayed on warm off-white paper for weeks; then Alex asked for
+  aino's own scheme (near-black ground, off-white text and ASCII) and the whole site was flipped to it. Still
+  one scheme, no toggle.
 - "Skills" page merged into About, then the skills sidebar and ASCII portrait removed entirely.
 - The ALEX headline went through: same size as the text → 1.5× → 2× → 5× on one line with "I'm" → then a round
   of 34 mockups. Kept from that round: a small "HI, I'M" over the name (from the "monument" layout), ALEX big but
